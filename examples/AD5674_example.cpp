@@ -48,8 +48,9 @@ AD5674RClass myDAC_R(CS_PIN_R, LDAC_PIN_R, RESET_PIN_R);
 void setup(){
 	// Power up/down example:
 	// Power down half of the channels of the AD5674R
-	bool power_up[16] = {1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0};
-	myDAC_R.powerUpDown(power_up, 16);
+	uint8_t channels[8] = {8, 9, 10, 11, 12, 13, 14, 15}; // Channels to power down
+	bool power_down[16] = {0, 0, 0, 0, 0, 0, 0, 0};
+	myDAC_R.powerUpDown(channels, power_down, 8);
 
 	// Channel setting example with float values:
 	// Set the powered-up channels of the AD5674R to increasing voltages between 0 and 1.8V, using the internal reference
